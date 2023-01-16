@@ -36,6 +36,8 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+
+        ScoreText.text = "Best Score: " + MenuManager.instance.GetPlayerName() + ":0"; 
     }
 
     private void Update()
