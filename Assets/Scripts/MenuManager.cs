@@ -48,14 +48,20 @@ public class MenuManager : MonoBehaviour
     //This is setup this way so the TMP_InputField can work, it doesn't accept a method with a string return type
     public void EnterPlayerName()
     {
-        playerName = nameInputField.text;
+        
+        instance.playerName = nameInputField.text;
+        if(instance.playerName.Length>12)
+        {
+            instance.playerName = null;
+            nameWarning.enabled = true;
+        }
         //This is not an optimal implementation as ToUpper/ToLower return a new instance, increasing memory allocation
         //For an optimal case-insensitive validation an extension method using String.IndexOf(substring,StringComparison.OrdinalIgnoreCase)
         //can be used, or regular expressions. This project won't need to store a large volume of strings so it's fine.
-        if(playerName.ToUpper().Contains("HITLER")|| playerName.ToUpper().Contains("SHIT")|| playerName.ToUpper().Contains("FUCK"))
+        if(instance.playerName.ToUpper().Contains("HITLER")|| instance.playerName.ToUpper().Contains("SHIT")|| instance.playerName.ToUpper().Contains("FUCK"))
         {
             offensiveWarning.enabled = true;
-            playerName = null;
+            instance.playerName = null;
         }
        
     }
@@ -63,7 +69,7 @@ public class MenuManager : MonoBehaviour
     //This method allows the MainManager to access the property (making playerName static should also work)
     public string GetPlayerName()
     {
-        return playerName;
+        return instance.playerName;
     }
 
     public void QuitGame()
