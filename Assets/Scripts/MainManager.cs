@@ -89,12 +89,11 @@ public class MainManager : MonoBehaviour
     //Class definition for the High Score save data
     [System.Serializable]
 
-    class SaveData
+    public class SaveData
     {
         //Always make the fields you want to save public, ToJson() only reads those
         public string playerName;
         public int score;
-        public int slot;
     }
 
     public void SaveScore()
@@ -121,6 +120,7 @@ public class MainManager : MonoBehaviour
         }
     }
 
+    //This doesn't work, JsonUtility only recognizes one save file in the required path
     private string GenerateSaveFileName(int slot)
     {
         return "/"+slot+"savefile.json";

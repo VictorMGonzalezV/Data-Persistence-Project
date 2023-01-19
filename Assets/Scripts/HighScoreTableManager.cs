@@ -27,7 +27,7 @@ public class HighScoreTableManager : MonoBehaviour
 
     public void PopulateList()
     {
-        string path = Application.persistentDataPath + "/savefile.json";
+        /*string path = Application.persistentDataPath + "/savefile.json";
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
@@ -36,6 +36,6 @@ public class HighScoreTableManager : MonoBehaviour
             {
                 highScoreTexts[i].text = "" + saveData.playerNames[i] + "------" + saveData.scores[i];
             }
-        }
+        }*/
     }
 }
