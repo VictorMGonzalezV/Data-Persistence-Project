@@ -187,7 +187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &290357336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -205,7 +205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -32}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &290357337
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290357335}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -440,6 +440,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348413101}
   m_CullTransparentMesh: 1
+--- !u!1 &399973256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 399973258}
+  - component: {fileID: 399973257}
+  m_Layer: 0
+  m_Name: HighScoreData
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &399973257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399973256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a45f1e690e2a17458199e91ec33802c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highScores: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  playerNames:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+--- !u!4 &399973258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399973256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 100, y: 56, z: 12.011935}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &466964886
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,6 +930,7 @@ GameObject:
   - component: {fileID: 973975263}
   - component: {fileID: 973975262}
   - component: {fileID: 973975261}
+  - component: {fileID: 973975264}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -946,8 +1003,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 128418676}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+      - m_Target: {fileID: 973975264}
+        m_TargetAssemblyTypeName: QuitButton, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -996,6 +1053,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973975259}
   m_CullTransparentMesh: 1
+--- !u!114 &973975264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973975259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88bd7a96b5681a4099f32900b8cbb41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1083413965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,6 +1282,7 @@ GameObject:
   - component: {fileID: 1441322128}
   - component: {fileID: 1441322127}
   - component: {fileID: 1441322126}
+  - component: {fileID: 1441322129}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -1285,9 +1355,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 128418676}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 1441322129}
+        m_TargetAssemblyTypeName: PlayButton, Assembly-CSharp
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1335,6 +1405,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441322124}
   m_CullTransparentMesh: 1
+--- !u!114 &1441322129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441322124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b528c2b3f7581747bb961027ca10ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1448760540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,6 +1564,7 @@ GameObject:
   - component: {fileID: 1548772918}
   - component: {fileID: 1548772917}
   - component: {fileID: 1548772916}
+  - component: {fileID: 1548772919}
   m_Layer: 5
   m_Name: InputField (TMP)
   m_TagString: Untagged
@@ -1590,10 +1673,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 128418676}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: EnterPlayerName
-        m_Mode: 1
+      - m_Target: {fileID: 1548772919}
+        m_TargetAssemblyTypeName: NameInputField, Assembly-CSharp
+        m_MethodName: ReportName
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1658,6 +1741,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548772914}
   m_CullTransparentMesh: 1
+--- !u!114 &1548772919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548772914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2119eabb986bf54ca2c966a79036e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1785240400
 GameObject:
   m_ObjectHideFlags: 0

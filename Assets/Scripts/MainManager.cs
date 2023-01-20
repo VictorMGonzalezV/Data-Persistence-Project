@@ -66,6 +66,9 @@ public class MainManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            } else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SceneManager.LoadScene("HighScoreTable");
             }
         }
     }
@@ -82,7 +85,12 @@ public class MainManager : MonoBehaviour
         {
               SaveScore();
         }
-      
+        else
+        {
+            HighScoreData.instance.ReportScore(MenuManager.instance.GetPlayerName(), m_Points);
+            Debug.Log("Reportings of " + MenuManager.instance.GetPlayerName() +""+ m_Points);
+        }
+       
         m_GameOver = true;
         GameOverText.SetActive(true);
     }

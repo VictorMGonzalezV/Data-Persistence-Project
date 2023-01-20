@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] TMP_InputField nameInputField;
@@ -12,6 +13,7 @@ public class MenuManager : MonoBehaviour
     private string playerName;
 
     public static MenuManager instance;
+ 
 
     private void Awake()
     {
@@ -26,17 +28,17 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //NameInputField = FindObjectOfType<TMP_InputField>();
+        /*loadingOperation = SceneManager.LoadSceneAsync("HighScoreTable");
+        SceneManager.LoadSceneAsync("HighScoreTable");*/
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     public void StartGame()
     {
+        
         if (playerName!=null)
         {
             SceneManager.LoadScene("main");
@@ -46,10 +48,10 @@ public class MenuManager : MonoBehaviour
     }
 
     //This is setup this way so the TMP_InputField can work, it doesn't accept a method with a string return type
-    public void EnterPlayerName()
+    public void EnterPlayerName(string name)
     {
         
-        instance.playerName = nameInputField.text;
+        instance.playerName = name;
         if(instance.playerName.Length>12)
         {
             instance.playerName = null;
@@ -72,6 +74,7 @@ public class MenuManager : MonoBehaviour
         return instance.playerName;
     }
 
+    //Moved this method to a script for the button to fix references breaking down
     public void QuitGame()
     {
         Application.Quit();
