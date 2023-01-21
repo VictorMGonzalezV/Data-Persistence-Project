@@ -38,9 +38,10 @@ public class HighScoreTableManager : MonoBehaviour
     {
         //GetBestScore();
         PopulateList();
-        Debug.Log($" ==> { string.Join(" ==> ", HighScoreData.instance.highScores)}");
+        //$ marks an interpolated string where the part in {} is the regular expression being interpolated
+        //Debug.Log($" ==> { string.Join(" ==> ", HighScoreData.instance.highScores)}");
         Invoke("LoadMenu", 10f);
-        //Debug.Log(HighScoreData.instance.lastScore);
+        
        
 
 
@@ -76,9 +77,9 @@ public class HighScoreTableManager : MonoBehaviour
 
     public void PopulateList()
     {
-        for (int i=0;i<highScoreTexts.Length;i++)
+        for (int i=0; i<highScoreTexts.Length; i++)
         {
-            highScoreTexts[i].text = "" + HighScoreData.instance.playerNames[i] + "- - - - - " + HighScoreData.instance.highScores[i];
+            highScoreTexts[i].text = "" + HighScoreData.instance.scoreEntries[i].playerName + "- - - - - " + HighScoreData.instance.scoreEntries[i].score;
         }
     }
 }

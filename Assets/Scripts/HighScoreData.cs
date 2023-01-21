@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+//Use this to have access to Array.Sort, etc
+using System.Linq;
 
 public class HighScoreData : MonoBehaviour
 {
@@ -13,6 +15,15 @@ public class HighScoreData : MonoBehaviour
     private int lastScore;
 
     public static HighScoreData instance;
+
+    public ScoreEntry[] scoreEntries = new ScoreEntry[10];
+    public ScoreEntry newScoreEntry;
+
+    public struct ScoreEntry
+    {
+       public string playerName;
+       public int score;
+    }
 
     //Create singleton, this object needs to be created when the first scene loads to prevent NullRefs
     private void Awake()
@@ -38,39 +49,49 @@ public class HighScoreData : MonoBehaviour
         instance.lastPlayer = name;
         instance.lastScore = points;
         Debug.Log("Has make receive " + instance.lastPlayer + instance.lastScore);
+        instance.newScoreEntry.playerName = name;
+        instance.newScoreEntry.score = points;
         instance.UpdateScores();
     }
 
-    //This method needs logic to sort the scores by points, but the first version can do without it
+    
     private void UpdateScores()
     {
-
-        //initialize i at 1 so index 0 is reserved for the best score, which is loaded from the save file by another method
-        for (int i = 1; i < instance.highScores.Length; i++)
+        
+        //No need to sort it first since it will start with a 0 in the last position anyway
+        //If the new entry beats the lowest in the array it can be replaced and then the sorting can be automated with System.Array.Sort
+        if(newScoreEntry.score>instance.scoreEntries[instance.scoreEntries.Length-1].score)
         {
-            //First check against zero to find an empty slot
-            if(instance.highScores[i]==0)          
-            {
-                instance.highScores[i] = instance.lastScore;
-                instance.playerNames[i] = instance.lastPlayer;
-                return;
-            }
-
+            instance.scoreEntries[instance.scoreEntries.Length - 1].score= newScoreEntry.score;
+            instance.scoreEntries[instance.scoreEntries.Length - 1].playerName = newScoreEntry.playerName;
         }
-        //If all slots are filled, replace the lowest score
-        //start from 1 to ignore the highest score
-        for (int j=1;j<highScores.Length;j++)
+        //Reversing x and y sorts the array in descending order, which is what we need here
+        System.Array.Sort<ScoreEntry>(instance.scoreEntries, (x, y) => y.score.CompareTo(x.score));
+        
+        //After the array has been sorted, start comparing from the lowest score
+        /*for (int i=scoreEntries.Length-1;i>=0;i--)
         {
-            if (instance.lastScore > Mathf.Min(instance.highScores))
-
+            if(instance.scoreEntries[i].score<instance.newScoreEntry.score)
             {
-                instance.highScores[j] = instance.lastScore;
-                instance.playerNames[j] = instance.lastPlayer;
+                if(i<scoreEntries.Length)
+                {
+                    for(int j=scoreEntries.Length-1;j<i+1;j++)
+                    {
+                        instance.scoreEntries[j].playerName = instance.scoreEntries[j - 1].playerName;
+                        instance.scoreEntries[j].score = instance.scoreEntries[j - 1].score;
+                    }
+                    instance.scoreEntries[i-1].playerName = instance.newScoreEntry.playerName;
+                    instance.scoreEntries[i-1].score = instance.newScoreEntry.score;
+
+                }
                 break;
             }
-        }
-          
-        Debug.Log("Can into update");
+
+            
+        }*/
+
+
+        
         
     }
 
@@ -81,8 +102,8 @@ public class HighScoreData : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             MainManager.SaveData data = JsonUtility.FromJson<MainManager.SaveData>(json);
-            instance.playerNames[0] = data.playerName;
-            instance.highScores[0] = data.score;
+            instance.scoreEntries[0].playerName = data.playerName;
+            instance.scoreEntries[0].score = data.score;
         }
     }
 
